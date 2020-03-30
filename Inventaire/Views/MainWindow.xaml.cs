@@ -14,7 +14,7 @@ namespace Inventaire
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        CustomersDataService customersDataService = new CustomersDataService();
+        readonly CustomersDataService customersDataService = new CustomersDataService();
 
         private ObservableCollection<Customer> customers;
         private Customer selectedCustomer;

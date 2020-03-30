@@ -5,7 +5,7 @@ namespace BillingManagement.Business
 {
     public class CustomersDataService : IDataService<Customer>
     {
-        List<Customer> customers;
+        readonly List<Customer> customers;
 
         public CustomersDataService()
         {
