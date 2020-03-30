@@ -36,6 +36,7 @@ namespace Inventaire
             }
         }
 
+
         public MainWindow()
         {
             InitializeComponent();
