@@ -11,6 +11,8 @@ namespace Inventaire
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+    //Commentaire pour tester le petit commit
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         CustomersDataService customersDataService = new CustomersDataService();
