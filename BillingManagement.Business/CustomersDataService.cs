@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using BillingManagement.Models;
 
-namespace app_models
+namespace BillingManagement.Business
 {
     public class CustomersDataService : IDataService<Customer>
     {

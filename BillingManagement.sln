@@ -5,10 +5,13 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BillingManagement.UI", "Inventaire\BillingManagement.UI.csproj", "{508AF97C-C689-4057-851B-B163F89FCC77}"
 	ProjectSection(ProjectDependencies) = postProject
+		{4E94A880-C400-417B-AB8F-2E933D949902} = {4E94A880-C400-417B-AB8F-2E933D949902}
 		{58FEC7DF-7358-4AFF-BFEC-225473BF7854} = {58FEC7DF-7358-4AFF-BFEC-225473BF7854}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BillingManagement.Models", "app_models\BillingManagement.Models.csproj", "{58FEC7DF-7358-4AFF-BFEC-225473BF7854}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingManagement.Business", "BillingManagement.Business\BillingManagement.Business.csproj", "{4E94A880-C400-417B-AB8F-2E933D949902}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +27,10 @@ Global
 		{58FEC7DF-7358-4AFF-BFEC-225473BF7854}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58FEC7DF-7358-4AFF-BFEC-225473BF7854}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58FEC7DF-7358-4AFF-BFEC-225473BF7854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E94A880-C400-417B-AB8F-2E933D949902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E94A880-C400-417B-AB8F-2E933D949902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E94A880-C400-417B-AB8F-2E933D949902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E94A880-C400-417B-AB8F-2E933D949902}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
