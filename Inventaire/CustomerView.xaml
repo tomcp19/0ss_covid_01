@@ -31,6 +31,12 @@
                 </MenuItem>
             </Menu>
         </StackPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Command="New" Content="Nouveau" />
+                <Button Command="Close" Content="Quitter" />
+            </ToolBar>
+        </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom" Height="25">
             <TextBlock Text="Client sélectionné : " />
             <TextBlock Text="{Binding SelectedCustomer.Info}" />
@@ -47,7 +53,6 @@
                 </Grid.RowDefinitions>
                 <StackPanel Margin="6" Orientation="Horizontal" x:Name="spHeader">
                     <TextBlock Text="Liste des clients" />
-                    <Button Content="Nouveau client" Margin="6 0" />
                 </StackPanel>
                 <ListView Grid.Row="1" ItemsSource="{Binding Customers}"
                           SelectedItem="{Binding SelectedCustomer}"
