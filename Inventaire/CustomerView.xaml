@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:Inventaire"
         mc:Ignorable="d"
         Title="Gestion de clients" Width="800" Height="500"
-        MinHeight="500" MinWidth="640"
-        DataContext="{Binding RelativeSource={RelativeSource self}}">
+        MinHeight="500" MinWidth="640">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
             <Menu>
@@ -16,7 +15,7 @@
                     <MenuItem Header="_Sauvegarder"/>
                     <MenuItem Header="_Fermer"/>
                     <Separator/>
-                    <MenuItem Header="_Nouveau client" Click="CustomerNew_Click"/>
+                    <MenuItem Header="_Nouveau client" />
                     <Separator/>
                     <MenuItem Header="_Quitter"/>
                 </MenuItem>
@@ -48,7 +47,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Margin="6" Orientation="Horizontal" x:Name="spHeader">
                     <TextBlock Text="Liste des clients" />
-                    <Button Content="Nouveau client" Margin="6 0" Click="CustomerNew_Click"/>
+                    <Button Content="Nouveau client" Margin="6 0" />
                 </StackPanel>
                 <ListView Grid.Row="1" ItemsSource="{Binding Customers}"
                           SelectedItem="{Binding SelectedCustomer}"
@@ -113,7 +112,7 @@
 
                 </StackPanel>
                 <StackPanel Grid.Row="6" Grid.Column="2" Margin="6">
-                    <Button Content="Supprimer client" Click="CustomerDelete_Click"/>
+                    <Button Content="Supprimer client" />
                 </StackPanel>
                 <Image Margin="6" Grid.Row="7"
                        Source="{Binding SelectedCustomer.PicturePath}"
