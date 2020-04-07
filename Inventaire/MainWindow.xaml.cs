@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows;
-
+//3.1.3 Petite modification pour test de branche covid_02
 namespace Inventaire
 {
     /// <summary>
