@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace app_models
-{
+{//petite modif pour 3.1
     public class Customer : INotifyPropertyChanged
     {
         private string name;
@@ -16,6 +16,7 @@ namespace app_models
         private string picturePath;
         private string contactInfo;
 
+        #region Property definitions
         public string Name
         {
             get => name;
@@ -81,6 +82,8 @@ namespace app_models
         }
 
         public string Info => $"{LastName}, {Name}";
+
+        #endregion
 
         public Customer()
         {
