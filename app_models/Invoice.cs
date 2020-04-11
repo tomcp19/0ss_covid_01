@@ -40,6 +40,19 @@ namespace app_models
             }
         }
 
+        public Invoice()
+        {
+            InvoiceId = Interlocked.Increment(ref InvoiceId);
+            CreationDateTime = DateTime.Now;
+        }
+
+        public Invoice(Customer Customer)
+        {
+            InvoiceId = Interlocked.Increment(ref InvoiceId);
+            CreationDateTime = DateTime.Now;
+            customer = Customer;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
