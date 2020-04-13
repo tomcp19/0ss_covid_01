@@ -9,9 +9,9 @@ namespace Inventaire
     /// </summary>
     public partial class CustomerView : Window
     {
-        CustomerViewModel _vm;
+        BillingManagement.UI.ViewModels.CustomerViewModel _vm;
 
-        public CustomerView(CustomerViewModel vm)
+        public CustomerView(BillingManagement.UI.ViewModels.CustomerViewModel vm)
         {
             InitializeComponent();
 
@@ -22,7 +22,7 @@ namespace Inventaire
 
         private void CustomerNew_Click(object sender, RoutedEventArgs e)
         {
-            Customer temp = new Customer() { Name = "Undefined", LastName = "Undefined" };
+            app_models.Customer temp = new app_models.Customer() { Name = "Undefined", LastName = "Undefined" };
             _vm.Customers.Add(temp);
             _vm.SelectedCustomer = temp;            
         }

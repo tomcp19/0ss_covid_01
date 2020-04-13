@@ -2,6 +2,7 @@
 using BillingManagement.Business;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Text;
 
 namespace BillingManagement.UI.ViewModels
 {
@@ -9,8 +10,8 @@ namespace BillingManagement.UI.ViewModels
     {
         readonly CustomersDataService customersDataService = new CustomersDataService();
 
-        private ObservableCollection<Customer> customers;
-        private Customer selectedCustomer;
+        private ObservableCollection<app_models.Customer> customers;
+        private app_models.Customer selectedCustomer;
 
         public ObservableCollection<Customer> Customers
         {

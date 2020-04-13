@@ -115,8 +115,19 @@
                 </StackPanel>
                 <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
                             Orientation="Horizontal" Margin="3">
-                    <TextBlock Text="Contact :" Width="75"/>
-                    <TextBlock MinWidth="125" Text="{Binding  SelectedCustomer.ContactInfo}"/>
+
+                    
+                    <DockPanel>
+                        <TextBlock Text="Contact :" Width="75"/>
+                        <DataGrid x:Name="dg" ItemsSource="{Binding SelectedCustomer.ContactInfos}" AutoGenerateColumns="False"
+                      >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Type" Binding="{Binding ContactType}"/>
+                                <DataGridTextColumn Header="Contact" Binding="{Binding Contact}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        
+                    </DockPanel>
 
 
                 </StackPanel>
