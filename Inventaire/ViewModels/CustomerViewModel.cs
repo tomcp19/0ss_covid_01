@@ -1,5 +1,6 @@
 ﻿using BillingManagement.Business;
 using BillingManagement.Models;
+using BillingManagement.UI.ViewModels.Commands;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
@@ -33,8 +34,22 @@ namespace BillingManagement.UI.ViewModels
         }
 
 
+        public DeleteCustomerCommand DeleteCustomerCommand { get; set; }
+
+        //private ObservableCollection<ContactInfo> contactInfos;
+
+        //public ObservableCollection<ContactInfo> ContactInfos
+        //{
+        //    get { return contactInfos; }
+        //    set { 
+        //        contactInfos = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
         public CustomerViewModel()
         {
+            DeleteCustomerCommand = new DeleteCustomerCommand(DeleteCustomer);
             InitValues();
         }
 
@@ -42,6 +57,17 @@ namespace BillingManagement.UI.ViewModels
         {
             Customers = new ObservableCollection<Customer>(customersDataService.GetAll());
             Debug.WriteLine(Customers.Count);
+        }
+
+        private void DeleteCustomer(Customer c)
+        {
+            var currentIndex = Customers.IndexOf(c);
+
+            if (currentIndex > 0) currentIndex--;
+
+            SelectedCustomer = Customers[currentIndex];
+
+            Customers.Remove(c);
         }
 
     }
