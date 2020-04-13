@@ -11,13 +11,6 @@ namespace BillingManagement.UI.ViewModels
     class InvoiceViewModel : BaseViewModel
     {
         //Ajoutez une InvoiceViewModel dans lequel on y retrouve les factures et l’information que l’on désire afficher dans InvoiceView.
-        //public static int InvoiceId; //{ get; private set; }
-        //readonly DateTime CreationDateTime; //{ get; private set; }
-        //private Customer customer;
-        //private double subTotal;
-        //public double FedTax { get { return subTotal * 0.05; } }
-        // public double ProvTax { get { return subTotal * 0.0975; } }
-        // private double total { get { return subTotal + ProvTax + FedTax; } }
 
         readonly InvoiceDataService invoicesDataService = new InvoiceDataService();
 
