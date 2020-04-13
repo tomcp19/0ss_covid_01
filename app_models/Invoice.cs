@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace app_models
 {
-    class Invoice : INotifyPropertyChanged
+    public class Invoice : INotifyPropertyChanged
     {
         //public static int nextID;
         public static int InvoiceId; //{ get; private set; }
