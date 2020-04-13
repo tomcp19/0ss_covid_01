@@ -1,5 +1,5 @@
-﻿using app_models;
-using BillingManagement.Business;
+﻿using BillingManagement.Business;
+using BillingManagement.Models;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
@@ -31,6 +31,7 @@ namespace BillingManagement.UI.ViewModels
                 OnPropertyChanged();
             }
         }
+
 
         public CustomerViewModel()
         {

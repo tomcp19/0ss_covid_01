@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace BillingManagement.UI.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -11,6 +11,7 @@ namespace BillingManagement.UI.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 
 }
