@@ -36,17 +36,6 @@ namespace BillingManagement.UI.ViewModels
 
         public DeleteCustomerCommand DeleteCustomerCommand { get; set; }
 
-        //private ObservableCollection<ContactInfo> contactInfos;
-
-        //public ObservableCollection<ContactInfo> ContactInfos
-        //{
-        //    get { return contactInfos; }
-        //    set { 
-        //        contactInfos = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         public CustomerViewModel()
         {
             DeleteCustomerCommand = new DeleteCustomerCommand(DeleteCustomer);
