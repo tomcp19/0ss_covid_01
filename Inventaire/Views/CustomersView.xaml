@@ -79,7 +79,8 @@
             <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
                             Orientation="Horizontal" Margin="3">
                 <TextBlock Text="Contact :" Width="75"/>
-                <ListView ItemsSource="{Binding SelectedCustomer.ContactInfos}">
+                <ListView ItemsSource="{Binding SelectedCustomer.ContactInfos}"
+                          MinHeight="90" MaxHeight="150">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Info}"/>
@@ -89,14 +90,19 @@
 
 
             </StackPanel>
-            <DataGrid Grid.Row="6"  ItemsSource="{Binding SelectedCustomer.Invoices}"/>
+            
+            <Image Margin="6" Grid.Row="5" Grid.Column="1"
+                   Source="{Binding SelectedCustomer.PicturePath}"
+                   Height="{Binding ElementName=lvContactInfos, Path=ActualHeight}"
+                   Stretch="Uniform"/>
 
+
+            <!--Boutons d'action-->
             <StackPanel Grid.Row="9" Grid.Column="2" Margin="6">
-                <Button Content="Supprimer client" Command="{Binding DeleteCustomerCommand}" CommandParameter="{Binding SelectedCustomer}"/>
+                <Button Content="Supprimer client"
+                        Command="{Binding DeleteCustomerCommand}"
+                        CommandParameter="{Binding SelectedCustomer}"/>
             </StackPanel>
-            <Image Margin="6" Grid.Row="8"
-                       Source="{Binding SelectedCustomer.PicturePath}"
-                       Stretch="Uniform"/>
         </Grid>
     </Grid>
 </UserControl>
