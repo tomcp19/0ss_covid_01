@@ -92,12 +92,28 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
-            
+
             <Image Margin="6" Grid.Row="5" Grid.Column="1"
                    Source="{Binding SelectedCustomer.PicturePath}"
                    Height="{Binding ElementName=lvContactInfos, Path=ActualHeight}"
                    Stretch="Uniform"/>
 
+            <DataGrid Grid.Row="6"
+                ItemsSource="{Binding SelectedCustomer.Invoices}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Facture" Binding="{Binding Info}"/>
+                    <DataGridTemplateColumn Header="Actions" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Voir" 
+                                        Command="{Binding Path=DataContext.ChangeViewCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                                        CommandParameter="invoice"/>
+                                    
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
 
             <!--Boutons d'action-->
             <StackPanel Grid.Row="9" Grid.Column="2" Margin="6">
