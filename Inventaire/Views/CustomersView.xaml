@@ -89,9 +89,9 @@
 
 
             </StackPanel>
+            <DataGrid Grid.Row="6"  ItemsSource="{Binding SelectedCustomer.Invoices}"/>
 
-
-            <StackPanel Grid.Row="7" Grid.Column="2" Margin="6">
+            <StackPanel Grid.Row="9" Grid.Column="2" Margin="6">
                 <Button Content="Supprimer client" Command="{Binding DeleteCustomerCommand}" CommandParameter="{Binding SelectedCustomer}"/>
             </StackPanel>
             <Image Margin="6" Grid.Row="8"
