@@ -90,9 +90,22 @@ namespace app_models
             PicturePath = "images/user.png";
         }
 
+        public string FullName => $"{name} : {lastName}";
+
         public ObservableCollection<ContactInfo> ContactInfos { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private ObservableCollection<Invoice> invoices;
+        public ObservableCollection<Invoice> Invoices
+        { 
+            get => invoices;
+            set
+            {
+                invoices = value;
+                OnPropertyChanged();
+            }
+        }
+
+    public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {

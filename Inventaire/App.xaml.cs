@@ -8,13 +8,13 @@ namespace Inventaire
     /// </summary>
     public partial class App : Application
     {
-        CustomerView _window;
+        MainView _window;
 
         public App()
         {
-            CustomerViewModel vm = new CustomerViewModel();
+            MainViewModel vm = new MainViewModel();
 
-            _window = new CustomerView(vm);
+            _window = new MainView();
 
             _window.Show();
         }

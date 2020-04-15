@@ -9,24 +9,26 @@ namespace app_models
 {
     public class Invoice : INotifyPropertyChanged
     {
-        //public static int nextID;
-        public static int InvoiceId; //{ get; private set; }
-        readonly DateTime CreationDateTime; //{ get; private set; }
+        public static int invoiceId = 0; //{ get; private set; }
+        public int InvoiceId { get; private set; }
+        private DateTime creationDateTime; //{ get; private set; }
+        public DateTime CreationDateTime { get { return creationDateTime; } set { creationDateTime = value; } }
         private Customer customer;
         private double subTotal;
         public double FedTax { get { return subTotal * 0.05; } }
         public double ProvTax { get { return subTotal * 0.0975; } }
-        private double total { get { return subTotal + ProvTax + FedTax; } }
+        public double Total { get { return Subtotal + ProvTax + FedTax; } }
 
         public double Subtotal
         {
-            get => subTotal;
+            get { return subTotal; }
             set
             {
                 subTotal = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ProvTax));
                 OnPropertyChanged(nameof(FedTax));
+                OnPropertyChanged(nameof(Total));
             }
         }
 
@@ -35,22 +37,23 @@ namespace app_models
             get => customer;
             set
             {
-                Customer = value;
+                customer = value;
                 OnPropertyChanged();
             }
         }
 
         public Invoice()
         {
-            InvoiceId = Interlocked.Increment(ref InvoiceId);
+            InvoiceId = Interlocked.Increment(ref invoiceId);
             CreationDateTime = DateTime.Now;
         }
 
-        public Invoice(Customer Customer)
+        public Invoice(Customer _Customer)
         {
-            InvoiceId = Interlocked.Increment(ref InvoiceId);
+            Customer = _Customer;
+            InvoiceId = Interlocked.Increment(ref invoiceId);
             CreationDateTime = DateTime.Now;
-            customer = Customer;
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

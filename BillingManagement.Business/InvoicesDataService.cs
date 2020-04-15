@@ -10,17 +10,27 @@ namespace BillingManagement.Business
     {
 
         readonly List<Invoice> invoices = new List<Invoice>();
+        readonly List<Customer> _customers = new CustomersDataService().GetAll().ToList();
 
         public InvoiceDataService()
         {
-            Random rnd1 = new Random();      
+            InitValues();
+        }
 
-            for (int i = 0; i < 500; i++)
+        public void InitValues()
+        { 
+            Random rnd = new Random();
+            foreach (var customer in _customers)
             {
-                var nbSubtotalRandom = rnd1.Next(100, 10000);     
-                Invoice newInvoices = new Invoice() { Subtotal = nbSubtotalRandom };   
+                int nbInvoices = rnd.Next(10);
 
-                invoices.Add(newInvoices);       
+                for (int i = 0; i < nbInvoices; i++)
+                {
+                    var invoice = new Invoice(customer);
+                    invoice.Subtotal = rnd.NextDouble() * 100 + 50;
+                    customer.Invoices.Add(invoice);
+                    invoices.Add(invoice);
+                }
             }
         }
 

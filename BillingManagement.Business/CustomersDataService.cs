@@ -124,6 +124,7 @@ namespace BillingManagement.Business
             foreach (Customer c in customers)
             {
                 c.ContactInfos = new ObservableCollection<ContactInfo>();
+                c.Invoices = new ObservableCollection<Invoice>();
 
                 var nbContacts = rnd.Next(1, 4);
 

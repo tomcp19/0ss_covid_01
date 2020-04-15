@@ -12,10 +12,9 @@ namespace BillingManagement.UI.ViewModels
     {
         //Ajoutez une InvoiceViewModel dans lequel on y retrouve les factures et l’information que l’on désire afficher dans InvoiceView.
 
-        readonly InvoiceDataService invoicesDataService = new InvoiceDataService();
-
+        public InvoiceDataService InvoicesDataService;
         private ObservableCollection<Invoice> invoices;
-        private Invoice selectedInvoice; //si jamais on a plus qu'un invoice? flushera plus tard ni non-nécessaire
+        private Invoice selectedInvoice; 
 
         public ObservableCollection<Invoice> Invoices
         {
@@ -27,7 +26,7 @@ namespace BillingManagement.UI.ViewModels
             }
         }
         
-        public Invoice SelectedInvoice //si jamais on a plus qu'un invoice?? //si jamais on a plus qu'un invoice? flushera plus tard ni non-nécessaire
+        public Invoice SelectedInvoice 
         {
             get => selectedInvoice;
             set
@@ -44,7 +43,9 @@ namespace BillingManagement.UI.ViewModels
 
         private void InitValues()
         {
-            Invoices = new ObservableCollection<Invoice>(invoicesDataService.GetAll());
+
+            InvoicesDataService = new InvoiceDataService();
+            Invoices = new ObservableCollection<Invoice>(InvoicesDataService.GetAll());
             Debug.WriteLine(Invoices.Count);
         }
     }

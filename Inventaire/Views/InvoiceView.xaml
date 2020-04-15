@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BillingManagement.UI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+   
         <DockPanel>
            
             <Grid>
@@ -22,12 +22,12 @@
                     <StackPanel Margin="6" Orientation="Horizontal" x:Name="spHeader">
                         <TextBlock Text="Liste des factures" />
                     </StackPanel>
-                    <ListView Grid.Row="1" ItemsSource="{Binding Invoice}"
+                    <ListView Grid.Row="1" ItemsSource="{Binding Invoices}"
                           SelectedItem="{Binding SelectedInvoice}"
-                          >
+                          x:Name="lvInvoices">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Info}"/>
+                                <TextBlock Text="{Binding InvoiceId}"/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
@@ -50,37 +50,41 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="3">
                         <TextBlock Text="Identifiant :" Width="75"/>
-                        <TextBox MinWidth="125" Text="{Binding SelectedInvoice.InvoiceId}"/>
+                    <TextBox MinWidth="125" Text="{Binding SelectedInvoice.InvoiceId, Mode=OneWay}"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="3">
+                    <TextBlock Text="Date :" Width="75"/>
+                    <TextBox MinWidth="125" Text="{Binding SelectedInvoice.CreationDateTime, Mode=OneWay}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
                             Orientation="Horizontal" Margin="3" >
                         <TextBlock Text="Prenom :" Width="75"/>
-                        <TextBox MinWidth="125" Text="{Binding SelectedInvoice.Customer.FirstName}"/>
+                    <TextBox MinWidth="125" Text="{Binding SelectedInvoice.Customer.Name, Mode=OneWay}"/>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
                             Orientation="Horizontal" Margin="3" >
                         <TextBlock Text="Nom :" Width="75"/>
-                        <TextBox MinWidth="125" Text="{Binding SelectedInvoice.Customer.LastName}"/>
+                    <TextBox MinWidth="125" Text="{Binding SelectedInvoice.Customer.LastName, Mode=OneWay}"/>
                     </StackPanel>
                     <StackPanel Grid.Row="3" Grid.Column="0"
                             Orientation="Horizontal" Margin="3" >
                         <TextBlock Text="Sous-Total :" Width="75"/>
-                        <TextBox MinWidth="175" Text="{Binding SelectedInvoice.Subtotal}"/>
+                    <TextBox MinWidth="175" Text="{Binding SelectedInvoice.Subtotal, Mode=OneWay, StringFormat=.00}"/>
                     </StackPanel>
                     <StackPanel Grid.Row="3" Grid.Column="1" 
                             Orientation="Horizontal" Margin="3">
                         <TextBlock Text="Taxe Provinciale :" Width="75"/>
-                        <TextBox MinWidth="50" Text="{Binding SelectedInvoice.ProvTx}"/>
+                    <TextBox MinWidth="50" Text="{Binding SelectedInvoice.ProvTax, Mode=OneWay, StringFormat=.00}"/>
                     </StackPanel>
                     <StackPanel Grid.Row="4" Grid.Column="0" 
                             Orientation="Horizontal" Margin="3">
                         <TextBlock Text="Taxe Federale :" Width="75"/>
-                        <TextBox MinWidth="125" Text="{Binding SelectedInvoice.FedTx}"/>
+                    <TextBox MinWidth="125" Text="{Binding SelectedInvoice.FedTax, Mode=OneWay, StringFormat=.00 }"/>
                     </StackPanel>
                     <StackPanel Grid.Row="4" Grid.Column="1" 
                             Orientation="Horizontal" Margin="3">
                         <TextBlock Text="Total :" Width="75"/>
-                        <TextBox MinWidth="125" Text="{Binding SelectedInvoice.Total}"/>
+                    <TextBox MinWidth="125" Text="{Binding SelectedInvoice.Total, Mode=OneWay, StringFormat=.00}"/>
                     </StackPanel>
                     <StackPanel/>
                     
@@ -88,5 +92,5 @@
                 </Grid>
             </Grid>
         </DockPanel>
-    </Grid>
+
 </UserControl>
