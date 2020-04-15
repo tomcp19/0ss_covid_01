@@ -5,8 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BillingManagement.UI.Views"
              xmlns:vm="clr-namespace:BillingManagement.UI.ViewModels"
+             xmlns:converters="clr-namespace:BillingManagement.UI.Views.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:HeightConverter x:Key="BorderHeightToXHeight"/>
+
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -95,13 +100,32 @@
                    Height="{Binding ElementName=lvContactInfos, Path=ActualHeight}"
                    Stretch="Uniform"/>
 
-            <DataGrid Grid.Row="6"
-                ItemsSource="{Binding SelectedCustomer.Invoices}" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Facture" Binding="{Binding Info}"/>
+            <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Margin="10">
+                <Button Content="Nouvelle facture" Width="150" HorizontalAlignment="Left"
+                        Command="{Binding DataContext.AddInvoiceToCustomerCommand,
+                                    RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DockPanel}}"
+                        CommandParameter="{Binding SelectedCustomer}"/>
+                <DataGrid 
+                        ItemsSource="{Binding SelectedCustomer.Invoices}"
+                        AutoGenerateColumns="False"
+                        ColumnHeaderHeight="30"
+                        Name="gridInvoices">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Facture" Binding="{Binding CreationDateTime}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Facture" Binding="{Binding Total, StringFormat={}{0:C}}" IsReadOnly="True"/>
 
-                </DataGrid.Columns>
-            </DataGrid>
+                        <DataGridTemplateColumn Header="Actions">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Voir" Command="{Binding DataContext.DisplayInvoiceCommand,
+                                                                    RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DockPanel}}"
+                                                           CommandParameter="{Binding}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
 
             <!--Boutons d'action-->
             <StackPanel Grid.Row="9" Grid.Column="2" Margin="6">
