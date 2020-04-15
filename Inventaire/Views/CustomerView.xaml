@@ -79,13 +79,15 @@
                 </StackPanel>
                 <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
                             Orientation="Horizontal" Margin="3">
-                    <TextBlock Text="Contact :" Width="75"/>
-                        <DataGrid ItemsSource="{Binding SelectedCustomer.ContactInfos}" AutoGenerateColumns="False">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Type" Binding="{Binding ContactType}"/>
-                                <DataGridTextColumn Header="Contact" Binding="{Binding Contact}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                        <TextBlock Text="Contact :" Width="75"/>
+                        <ListView Grid.Row="1" ItemsSource="{Binding SelectedCustomer.ContactInfos}"
+                          SelectedItem="{Binding SelectedCustomer}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Info}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
 
 
                     </StackPanel>
