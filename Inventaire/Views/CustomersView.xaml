@@ -106,7 +106,9 @@
                         <DataGridTemplateColumn Header="Action" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Voir" Width="50" HorizontalAlignment="Left" Command="{Binding ShowInvoiceCommand}" CommandParameter="{Binding SelectedInvoice}"/>
+                                    <Button Content="Voir" Width="50" HorizontalAlignment="Left" 
+                                            Command="{Binding DataContext.DisplayInvoiceCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DockPanel}}" 
+                                            CommandParameter="{Binding}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
