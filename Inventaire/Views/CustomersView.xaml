@@ -103,8 +103,8 @@
                         CommandParameter="{Binding SelectedCustomer}"/>
                 <DataGrid ItemsSource="{Binding SelectedCustomer.Invoices}" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" > 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Facture" Binding="{Binding Info}"/>
-                        <DataGridTextColumn Header="Facture" Binding="{Binding Total, StringFormat=C}"/>
+                        <DataGridTextColumn Header="Facture" Binding="{Binding Info , Mode= OneWay}"/>
+                        <DataGridTextColumn Header="Facture" Binding="{Binding Total, StringFormat=C, Mode= OneWay}"/>
                         <DataGridTemplateColumn Header="Action" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

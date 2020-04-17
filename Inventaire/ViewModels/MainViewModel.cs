@@ -2,6 +2,7 @@
 using BillingManagement.UI.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace BillingManagement.UI.ViewModels
@@ -22,18 +23,19 @@ namespace BillingManagement.UI.ViewModels
 		CustomerViewModel customerViewModel;
 		InvoiceViewModel invoiceViewModel;
 
-		public ChangeViewCommand ChangeViewCommand { get; set; }
+		public RelayCommand ChangeViewCommand { get; set; }
 		public RelayCommand NewCustomerCommand { get; private set; }
 		public RelayCommand NewInvoiceCommand { get; private set; }
 		public RelayCommand DisplayInvoiceCommand { get; private set; }
 		public RelayCommand DisplayCustomerCommand { get; private set; }
 		public MainViewModel()
 		{
-			ChangeViewCommand = new ChangeViewCommand(ChangeView);
+			ChangeViewCommand = new RelayCommand(ChangeView);
 			NewCustomerCommand = new RelayCommand(NewCustomer);
 			NewInvoiceCommand = new RelayCommand(NewInvoice, CanExecuteNewInvoice);
 
-			DisplayInvoiceCommand = new RelayCommand(DisplayInvoice);
+			DisplayInvoiceCommand = new RelayCommand(DisplayInvoice , CanEnableDisplayInvoice);
+			DisplayCustomerCommand = new RelayCommand(DisplayCustomer, CanExecuteDisplayCustomer);
 
 			customerViewModel = new CustomerViewModel();
 			invoiceViewModel = new InvoiceViewModel(customerViewModel.Customers);
@@ -42,9 +44,28 @@ namespace BillingManagement.UI.ViewModels
 
 		}
 
-		private void ChangeView(string vm)
+		private bool CanEnableDisplayInvoice(object i) //Credited to Holy Light "Le Brillant" Denoncourt
 		{
-			switch (vm)
+			try
+			{
+				var invoice = i as Invoice;
+				Debug.WriteLine("Soyez béni de la lumière de JY");
+				if (invoice != null) return true;
+
+				else return false;
+
+			}
+			catch
+			{
+				Debug.WriteLine("Jean-Yves crie que c'est pas bon");
+				return false;
+			}
+
+		}
+
+		private void ChangeView(object vm)
+		{
+			switch (vm as string)
 			{
 				case "customers":
 					VM = customerViewModel;
@@ -88,6 +109,18 @@ namespace BillingManagement.UI.ViewModels
 			return c == null ? false : true;
 		}
 
+		private void DisplayCustomer(object c)
+		{
+			var customer = c as Customer;
+
+			customerViewModel.SelectedCustomer = customer;
+			VM = customerViewModel;
+		}
+
+		private bool CanExecuteDisplayCustomer(object c)
+		{
+			return c == null ? false : true;
+		}
 
 	}
 }
