@@ -10,7 +10,6 @@ namespace BillingManagement.UI.ViewModels
     public class CustomerViewModel : BaseViewModel
     {
         readonly CustomersDataService customersDataService = new CustomersDataService();
-        //readonly InvoicesDataService invoicesDataService = new InvoicesDataService();
 
         private ObservableCollection<Customer> customers;
         private Customer selectedCustomer;
@@ -62,8 +61,6 @@ namespace BillingManagement.UI.ViewModels
 
         public RelayCommand DeleteCustomerCommand { get; private set; }
 
-        //public ShowInvoiceCommand ShowInvoiceCommand { get; set; }//
-
 
         public CustomerViewModel()
         {
@@ -98,17 +95,5 @@ namespace BillingManagement.UI.ViewModels
             return customer.Invoices.Count == 0;
             
         }
-
-        private void ShowInvoice(Invoice c)//
-        {
-            var currentIndex = Invoices.IndexOf(c);
-
-            if (currentIndex > 0) currentIndex--;
-
-            SelectedInvoice = Invoices[currentIndex];
-            Console.WriteLine(c);
-            //Invoices.Show(c);
-        }
-
     }
 }
