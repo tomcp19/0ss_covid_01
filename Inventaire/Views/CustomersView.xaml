@@ -86,28 +86,27 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
+                <Image Margin="6" Grid.Row="8" 
+                       Source="{Binding SelectedCustomer.PicturePath}" MaxWidth="150" MaxHeight="150"/>
 
             </StackPanel>
 
-
-            <StackPanel Grid.Row="7" Grid.Column="2" Margin="6">
+            <StackPanel Grid.Row="9" Grid.Column="2" Margin="6">
                 <Button Content="Supprimer client" Command="{Binding DeleteCustomerCommand}" CommandParameter="{Binding SelectedCustomer}"/>
             </StackPanel>
-            <Image Margin="6" Grid.Row="8"
-                       Source="{Binding /SelectedCustomer.PicturePath}"
-                       Stretch="Uniform"/>
-            <StackPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+          
+
+            <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
                             Orientation="Vertical" Margin="3">
-                <TextBlock Text="Facture :" Width="75"/>
-                <DataGrid ItemsSource="{Binding SelectedCustomer.Invoices}" AutoGenerateColumns="False"> 
+                <Button Content="Nouvelle Facture" Width="150" HorizontalAlignment="Left"/>
+                <DataGrid ItemsSource="{Binding SelectedCustomer.Invoices}" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" > 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Facture" Binding="{Binding Info}"/>
                         <DataGridTextColumn Header="Facture" Binding="{Binding Total, StringFormat=C}"/>
                         <DataGridTemplateColumn Header="Action" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Voir" Width="50" HorizontalAlignment="Left"/>
+                                    <Button Content="Voir" Width="50" HorizontalAlignment="Left" Command="{Binding ShowInvoiceCommand}" CommandParameter="{Binding SelectedInvoice}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
