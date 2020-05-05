@@ -19,6 +19,18 @@ namespace BillingManagement.UI.ViewModels
 			}
 		}
 
+		private string searchCriteria;
+
+		public string SearchCriteria
+		{
+			get { return searchCriteria; }
+			set { 
+				searchCriteria = value;
+				OnPropertyChanged();
+			}
+		}
+
+
 		CustomerViewModel customerViewModel;
 		InvoiceViewModel invoiceViewModel;
 
