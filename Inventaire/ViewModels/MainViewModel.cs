@@ -43,6 +43,7 @@ namespace BillingManagement.UI.ViewModels
 
 		public DelegateCommand<Customer> AddInvoiceToCustomerCommand { get; private set; }
 
+		public DelegateCommand<Customer> SearchCommand { get; private set; }
 
 		public MainViewModel()
 		{
@@ -56,8 +57,48 @@ namespace BillingManagement.UI.ViewModels
 			customerViewModel = new CustomerViewModel();
 			invoiceViewModel = new InvoiceViewModel(customerViewModel.Customers);
 
+			SearchCommand = new DelegateCommand<Customer>(SearchCustomer, CanSearch);
+
 			VM = customerViewModel;
 
+		}
+
+		private void SearchCustomer(object parameter)
+		{
+			string input = parameter as string;
+			//int output;
+			string searchMethod;
+			/*if (!Int32.TryParse(input, out output)) pas besoin car recherche juste les noms
+			{
+				searchMethod = "name";
+			}
+			else
+			{
+				searchMethod = "id";
+			}*/
+
+			//switch (searchMethod)
+			{
+				/*case "id":
+					SelectedCustomer = PhoneBookBusiness.GetInvoiceByID(output);
+					break;
+				case "name":
+					Contacts = PhoneBookBusiness.GetContactByName(input);
+					if (Contacts.Count > 0)
+					{
+						SelectedContact = Contacts[0];
+					}
+					else
+					{
+						Contacts = PhoneBookBusiness.GetAllContacts();
+						SelectedContact = Contacts.First<ContactModel>();
+						MessageBox.Show("Aucun contact trouvé");
+					}
+					break;
+				default:
+					MessageBox.Show("Unknown search method");
+					break;*/
+			}
 		}
 
 		private void ChangeView(string vm)
@@ -66,9 +107,11 @@ namespace BillingManagement.UI.ViewModels
 			{
 				case "customers":
 					VM = customerViewModel;
+
 					break;
 				case "invoices":
 					VM = invoiceViewModel;
+
 					break;
 			}
 		}
@@ -77,12 +120,14 @@ namespace BillingManagement.UI.ViewModels
 		{
 			invoiceViewModel.SelectedInvoice = invoice;
 			VM = invoiceViewModel;
+			//Search.IsEnabled = false;
 		}
 
 		private void DisplayCustomer(Customer customer)
 		{
 			customerViewModel.SelectedCustomer = customer;
 			VM = customerViewModel;
+			//Search.IsEnabled = true;
 		}
 
 		private void AddInvoiceToCustomer(Customer c)
@@ -103,6 +148,14 @@ namespace BillingManagement.UI.ViewModels
 		}
 
 		private bool CanAddNewItem(object o)
+		{
+			bool result = false;
+
+			result = VM == customerViewModel;
+			return result;
+		}
+
+		private bool CanSearch(object o)
 		{
 			bool result = false;
 
