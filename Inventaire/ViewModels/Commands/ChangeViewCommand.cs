@@ -16,6 +16,15 @@ namespace BillingManagement.UI.ViewModels.Commands
             _execute = action;
         }
 
+       /* public ChangeViewCommand(Action<string> execute, Predicate<string> canExecute)
+        {
+            if (execute == null)
+                throw new ArgumentNullException("execute");
+
+            _execute = execute;
+            _canExecute = canExecute;
+        }*/
+
         public bool CanExecute(object parameter)
         {
             return true;
