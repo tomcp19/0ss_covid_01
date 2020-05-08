@@ -11,7 +11,7 @@ namespace BillingManagement.Models
     {
         static int nextId;
 
-        public int InvoiceId { get; private set; }
+        public int InvoiceID { get; private set; }
 
         public DateTime CreationDateTime { get; private set; }
 
@@ -56,7 +56,7 @@ namespace BillingManagement.Models
         public Invoice()
         {
             // Incremente le ID
-            InvoiceId = Interlocked.Increment(ref nextId);
+            InvoiceID = Interlocked.Increment(ref nextId);
 
             CreationDateTime = DateTime.Now;
         }
@@ -64,7 +64,7 @@ namespace BillingManagement.Models
         public Invoice(Customer customer)
         {
             // Incremente le ID
-            InvoiceId = Interlocked.Increment(ref nextId);
+            InvoiceID = Interlocked.Increment(ref nextId);
 
             CreationDateTime = DateTime.Now;
             Customer = customer;
