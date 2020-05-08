@@ -11,6 +11,7 @@ namespace BillingManagement.UI.ViewModels
         readonly CustomersDataService customersDataService = new CustomersDataService();
 
         private ObservableCollection<Customer> customers;
+        private ObservableCollection<Customer> customersbackup;
         private Customer selectedCustomer;
 
         public ObservableCollection<Customer> Customers
@@ -19,6 +20,16 @@ namespace BillingManagement.UI.ViewModels
             private set
             {
                 customers = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Customer> CustomersBackUp
+        {
+            get => customersbackup;
+            private set
+            {
+                customersbackup = value;
                 OnPropertyChanged();
             }
         }
@@ -47,6 +58,7 @@ namespace BillingManagement.UI.ViewModels
         private void InitValues()
         {
             Customers = new ObservableCollection<Customer>(customersDataService.GetAll());
+            CustomersBackUp = new ObservableCollection<Customer>(customersDataService.GetAll());
             Debug.WriteLine(Customers.Count);
         }
 

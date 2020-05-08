@@ -2,8 +2,11 @@
 using BillingManagement.UI.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
 
 namespace BillingManagement.UI.ViewModels
 {
@@ -66,21 +69,37 @@ namespace BillingManagement.UI.ViewModels
 
 		private void SearchCustomer(object parameter)
 		{
-			string input = parameter as string;
-			//int output;
-					/*Customers = CustomerViewModel.GetContactByName(input);
-					if (Customers.Count > 0)
-					{
-						SelectedCustomer = Customers[0];
-					}
-					else
-					{
-						Customers = CustomerViewModel.GetAll();
-						SelectedCustomer = Customers.First<Customer>();
-						MessageBox.Show("Aucun contact trouvé");
-					}*/
-			
+			string input = searchCriteria as string;
+			List<Customer> Customers = customerViewModel.CustomersBackUp.ToList<Customer>();//a garder intact
+			List<Customer> CustomersResults = customerViewModel.Customers.ToList<Customer>();//pour la recherche
+			Customer SelectedCustomer = customerViewModel.SelectedCustomer;
+			ObservableCollection<Customer> customers = new ObservableCollection<Customer>();
+
+			SelectedCustomer = Customers.Find(c=> c.Name == input || c.LastName == input);
+
+			if (SelectedCustomer != null)
+			{
+				customerViewModel.Customers.Clear();
+				foreach (Customer c in CustomersResults.Where(c => c.Name.StartsWith(input) || c.LastName.StartsWith(input)))
+				{
+					customerViewModel.Customers.Add(c);
+				}
+				customerViewModel.SelectedCustomer = SelectedCustomer;
+			}
+			else
+			{
+				customerViewModel.Customers.Clear();
+				foreach (Customer c in Customers)
+				{
+					customerViewModel.Customers.Add(c);
+				}
+
+				SelectedCustomer = Customers.First<Customer>();
+				MessageBox.Show("Aucun contact trouvé");
+
+			}
 		}
+
 
 		private void ChangeView(string vm)
 		{
