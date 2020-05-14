@@ -1,5 +1,6 @@
 ﻿using BillingManagement.Models;
 using BillingManagement.UI.ViewModels.Commands;
+using Inventaire;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,6 +50,8 @@ namespace BillingManagement.UI.ViewModels
 
 		public RelayCommand<Customer> SearchCommand { get; private set; }
 
+		public DelegateCommand<object> CloseCommand { get; set; }
+
 		public MainViewModel()
 		{
 			ChangeViewCommand = new ChangeViewCommand(ChangeView);
@@ -62,6 +65,7 @@ namespace BillingManagement.UI.ViewModels
 			invoiceViewModel = new InvoiceViewModel(customerViewModel.Customers);
 
 			SearchCommand = new RelayCommand<Customer>(SearchCustomer, CanSearch);
+			CloseCommand = new DelegateCommand<object>(CloseApp);
 
 			VM = customerViewModel;
 
@@ -158,6 +162,11 @@ namespace BillingManagement.UI.ViewModels
 			bool result = false;
 			result = VM == customerViewModel;
 			return result;
+		}
+
+		private void CloseApp(object o)
+		{
+			App.Current.Shutdown();
 		}
 
 	}
